@@ -30,7 +30,6 @@ import com.android.deskclock.settings.SettingsActivity;
 
 import java.util.Locale;
 import java.util.TimeZone;
-
 /**
  * This class encapsulates the storage of application preferences in {@link SharedPreferences}.
  */
@@ -110,6 +109,13 @@ final class SettingsDAO {
         return getClockStyle(context, ScreensaverSettingsActivity.KEY_CLOCK_STYLE);
     }
 
+    static boolean getScreensaverNightMode(Context context) {
+        final SharedPreferences prefs = getSharedPreferences(context);
+        final boolean nightmode = prefs.getBoolean(ScreensaverSettingsActivity.KEY_NIGHT_MODE, false);
+        return nightmode;
+    }
+
+
     /**
      * @return the uri of the selected ringtone or the {@code defaultUri} if no explicit selection
      *      has yet been made
@@ -146,6 +152,17 @@ final class SettingsDAO {
         // accent to character, which breaks the enum conversion.
         return ClockStyle.valueOf(clockStyle.toUpperCase(Locale.US));
     }
+
+    static void setScreensaverClockStyle(Context context, String prefKey, String value) {
+        final SharedPreferences prefs = getSharedPreferences(context);
+        prefs.edit().putString(prefKey, value).apply();
+    }
+
+    static void setScreensaverNightMode(Context context, String prefKey, boolean value) {
+        final SharedPreferences prefs = getSharedPreferences(context);
+        prefs.edit().putBoolean(prefKey, value).apply();
+    }
+
 
     private static SharedPreferences getSharedPreferences(Context context) {
         if (sPrefs == null) {

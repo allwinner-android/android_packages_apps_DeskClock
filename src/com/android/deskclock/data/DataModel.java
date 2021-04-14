@@ -570,6 +570,21 @@ public final class DataModel {
         return mSettingsModel.getScreensaverClockStyle();
     }
 
+    public boolean getScreensaverNightMode() {
+        enforceMainLooper();
+        return mSettingsModel.getScreensaverNightMode();
+    }
+
+    public void setScreensaverClockStyle(String str, String val){
+        enforceMainLooper();
+        mSettingsModel.setScreensaverClockStyle(str, val);
+    }
+
+    public void setScreensaverNightMode(String str, boolean val){
+        enforceMainLooper();
+        mSettingsModel.setScreensaverNightMode(str, val);
+    }
+
     /**
      * @return {@code true} if the users wants to automatically show a clock for their home timezone
      *      when they have travelled outside of that timezone

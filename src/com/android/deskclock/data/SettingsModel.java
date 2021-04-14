@@ -63,6 +63,19 @@ final class SettingsModel {
         return SettingsDAO.getScreensaverClockStyle(mContext);
     }
 
+    boolean getScreensaverNightMode() {
+        return SettingsDAO.getScreensaverNightMode(mContext);
+    }
+
+
+    void setScreensaverClockStyle(String str, String val) {
+        SettingsDAO.setScreensaverClockStyle(mContext, str, val);
+    }
+
+    void setScreensaverNightMode(String str, boolean val) {
+        SettingsDAO.setScreensaverNightMode(mContext, str, val);
+    }
+
     boolean getShowHomeClock() {
         if (!SettingsDAO.getAutoShowHomeClock(mContext)) {
             return false;
