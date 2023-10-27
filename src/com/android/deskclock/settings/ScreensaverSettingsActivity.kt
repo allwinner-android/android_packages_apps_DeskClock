@@ -55,12 +55,12 @@ class ScreensaverSettingsActivity : AppCompatActivity() {
         @TargetApi(Build.VERSION_CODES.N)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            if (Utils.isNOrLater) {
-                getPreferenceManager().setStorageDeviceProtected()
-            }
         }
 
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String) {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            if (Utils.isNOrLater) {
+                preferenceManager.setStorageDeviceProtected()
+            }
             addPreferencesFromResource(R.xml.screensaver_settings)
         }
 
